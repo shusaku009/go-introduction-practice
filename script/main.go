@@ -17,6 +17,8 @@ func main() {
 	fmt.Println("世" + "界")
 
 	hello := "Hello, 世界"
-
 	fmt.Println(hello)
+
+	const helloWorld = "Hello, 世界"
+	fmt.Println(helloWorld)
 }
