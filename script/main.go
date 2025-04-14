@@ -10,4 +10,13 @@ func main() {
 	fmt.Print("値段>")
 	fmt.Scanln(&price)
 	fmt.Printf("%d円\n", price)
+
+	msg := "hello"
+
+	fmt.Println(msg)
+	fmt.Println("世" + "界")
+
+	hello := "Hello, 世界"
+
+	fmt.Println(hello)
 }
