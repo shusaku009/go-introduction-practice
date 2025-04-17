@@ -21,4 +21,11 @@ func main() {
 
 	const helloWorld = "Hello, 世界"
 	fmt.Println(helloWorld)
+
+	const (
+		a = 1 + 2
+		b
+		c
+	)
+	fmt.Println(a, b, c)
 }
