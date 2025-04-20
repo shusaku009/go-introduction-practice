@@ -40,4 +40,10 @@ func main() {
 		FlagC
 		FlagD
 	)
+
+	n := 100 + 200
+	m := n + 100
+	msg2 := "hoge" + "fuga"
+
+	fmt.Println(n, m, msg2)
 }
