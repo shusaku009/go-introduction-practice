@@ -28,5 +28,6 @@ func main() {
 		name: "Gopher",
 		age: 10,
 	}
+	p.age++
 	println(p.name, p.age)
 }
