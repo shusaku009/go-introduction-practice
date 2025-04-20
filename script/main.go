@@ -46,4 +46,21 @@ func main() {
 	msg2 := "hoge" + "fuga"
 
 	fmt.Println(n, m, msg2)
+
+	for i := 1; i <= 100; i = i + 1 {
+		if i%2 == 1 {
+			fmt.Println(i, "- 奇数")
+		} else {
+			fmt.Println(i, "- 偶数")
+		}
+	}
+
+	for i := 1; i <= 100; i = i + 1 {
+		switch i % 2 {
+		case 1:
+			fmt.Println(i, "- 奇数")
+		default:
+			fmt.Println(i, "- 偶数")
+		}
+	}
 }
