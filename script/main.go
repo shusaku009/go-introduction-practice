@@ -33,4 +33,11 @@ func main() {
 		StatusOK = iota
 		StatusNG
 	)
+
+	const (
+		FlagA = 1 << iota
+		FlagB
+		FlagC
+		FlagD
+	)
 }
