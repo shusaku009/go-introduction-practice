@@ -28,4 +28,9 @@ func main() {
 		c
 	)
 	fmt.Println(a, b, c)
+
+	const (
+		StatusOK = iota
+		StatusNG
+	)
 }
