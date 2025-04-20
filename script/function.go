@@ -1,5 +1,10 @@
 package main
 
+type Person struct {
+	name string
+	age int
+}
+
 func main() {
 	var f float64 = 10
 	var n int = int(f)
@@ -18,4 +23,10 @@ func main() {
 	} else {
 		println("false")
 	}
+
+	p := Person {
+		name: "Gopher",
+		age: 10,
+	}
+	println(p.name, p.age)
 }
