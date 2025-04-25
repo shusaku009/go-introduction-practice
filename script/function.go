@@ -51,4 +51,16 @@ func main() {
 	for _, f := range fs {
 		f()
 	}
+
+	person := struct {
+		age  int
+		name string
+	}{age: 20, name: "Gopher"}
+	p2 := person
+	p2.age = 30
+	p3 := person
+	p3.name = "testuser"
+	println(p.age, p.name)
+	println(p2.age, p2.name)
+	println(p3.age, p3.name)
 }
