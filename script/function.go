@@ -36,5 +36,9 @@ func main() {
 	}
 	p.age++
 	println(p.name, p.age)
-}
 
+	msg := "Hello, World"
+	func() {
+		println(msg)
+	}()
+}
