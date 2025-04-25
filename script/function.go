@@ -78,8 +78,15 @@ func main() {
 			println("-奇数")
 		}
 	}
+
+	g, m := swap(1, 2)
+	println(g, m)
 }
 
 func isEven(n int) bool {
 	return n%2 == 0
+}
+
+func swap(a, b int) (int, int) {
+	return b, a
 }
