@@ -69,4 +69,17 @@ func main() {
 	ns2[1] = 50
 	println(ns[0], ns[1], ns[2])
 	println(ns2[0], ns2[1], ns2[2])
+
+	for i := 1; i < 100; i++ {
+		print(i)
+		if isEven(i) {
+			println("-偶数")
+		} else {
+			println("-奇数")
+		}
+	}
+}
+
+func isEven(n int) bool {
+	return n%2 == 0
 }
