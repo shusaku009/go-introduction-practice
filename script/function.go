@@ -63,4 +63,10 @@ func main() {
 	println(p.age, p.name)
 	println(p2.age, p2.name)
 	println(p3.age, p3.name)
+
+	ns := []int{10, 20, 30}
+	ns2 := ns
+	ns2[1] = 50
+	println(ns[0], ns[1], ns[2])
+	println(ns2[0], ns2[1], ns2[2])
 }
