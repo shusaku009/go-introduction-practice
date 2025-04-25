@@ -81,6 +81,10 @@ func main() {
 
 	g, m := swap(1, 2)
 	println(g, m)
+
+	n, m = 10, 20
+	swap2(&n, &m)
+	println(n, m)
 }
 
 func isEven(n int) bool {
@@ -89,4 +93,8 @@ func isEven(n int) bool {
 
 func swap(a, b int) (int, int) {
 	return b, a
+}
+
+func swap2(a, b *int) (int, int) {
+	return *b, *a
 }
