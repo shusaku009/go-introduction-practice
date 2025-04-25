@@ -2,7 +2,13 @@ package main
 
 type Person struct {
 	name string
-	age int
+	age  int
+}
+
+type Score struct {
+	UserID  string
+	GamesID int
+	Point   int
 }
 
 func main() {
@@ -24,10 +30,11 @@ func main() {
 		println("false")
 	}
 
-	p := Person {
+	p := Person{
 		name: "Gopher",
-		age: 10,
+		age:  10,
 	}
 	p.age++
 	println(p.name, p.age)
 }
+
