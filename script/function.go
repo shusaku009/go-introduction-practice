@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type Person struct {
 	name string
 	age  int
@@ -41,4 +43,12 @@ func main() {
 	func() {
 		println(msg)
 	}()
+
+	fs := make([]func(), 3)
+	for i := range fs {
+		fs[i] = func() { fmt.Println(i) }
+	}
+	for _, f := range fs {
+		f()
+	}
 }
