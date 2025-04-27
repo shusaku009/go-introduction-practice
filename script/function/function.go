@@ -18,8 +18,7 @@ func main() {
 	var n int = int(f)
 	println(n)
 
-	var sum float64
-	sum = 5 + 6 + 3
+	var sum float64 = 5 + 6 + 3
 	avg := sum / 3
 	if avg > 4.5 {
 		println("good")
