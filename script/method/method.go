@@ -2,8 +2,10 @@ package main
 
 import "fmt"
 
-type Hex int
-type T int
+type (
+	Hex int
+	T   int
+)
 
 func (h Hex) String() string {
 	return fmt.Sprintf("%x", int(h))
@@ -13,6 +15,8 @@ func (t *T) f() { println("hi") }
 
 func main() {
 	var hex Hex = 100
+	f := hex.String
+	fmt.Println(f())
 	fmt.Println(hex.String())
 
 	var v T
