@@ -15,5 +15,9 @@ func (h Hex) String() string {
 func main() {
 	var s Stringer = Hex(100)
 	fmt.Println(s.String())
+	
+	var v interface{}
+	v = 100
+	v = "hoge"
+	fmt.Println(v)
 }
-
