@@ -1,67 +1,91 @@
 package main
 
 import (
+	"bufio"
+	"flag"
 	"fmt"
+	"io"
+	"math/rand"
+	"os"
+	"time"
 )
 
-// 標準出力でランダムに英単語を表示する
-// ユーザーの入力を受け付ける
-// 入力した単語と、表示した単語が一致していればOK
-
-func inputWord() string {
-	return "hello"
-}
-
-// func main() {
-// 	typ := flag.String("type", "default", "type of word")
-// 	flag.Parse()
-	
-// 	wordSets := map[string][]string{
-// 		"default": {"hello", "world", "golang", "programming"},
-// 		"animals": {"cat", "dog", "elephant", "tiger", "lion"},
-// 		"fruits":  {"apple", "banana", "orange", "grape", "mango"},
-// 	}
-	
-// 	words, exists := wordSets[*typ]
-// 	if !exists {
-// 		words = wordSets["default"]
-// 	}
-	
-// 	rand.Seed(time.Now().UnixNano())
-	
-// 	userInput := inputWord()
-// 	fmt.Println("ユーザーの入力:", userInput)
-// 	// ランダムに選択
-// 	randomWord := words[rand.Intn(len(words))]
-// 	fmt.Println("ランダムな単語:", randomWord)
-
-// }
-
-func main() {
-	totalScore := 0
-	ask(1, "hello", &totalScore)
-	ask(2, "world", &totalScore)
-	ask(3, "golang", &totalScore)
-	ask(4, "programming", &totalScore)
-	ask(5, "typescript", &totalScore)
-	ask(6, "javascript", &totalScore)
-	ask(7, "python", &totalScore)
-	ask(8, "java", &totalScore)
-	ask(9, "c++", &totalScore)
-	ask(10, "c#", &totalScore)
-	
-	fmt.Println("あなたの合計得点は", totalScore, "点です")
-}
-
-func ask(number int, question string, scorePtr *int) {
-	var ans string
-	fmt.Printf("[質問%d] 次の単語を入力してください: %s\n", number, question)
-	fmt.Scanln(&ans)
-	if ans == question {
-		*scorePtr += 10
-		fmt.Println("正解です")
-	} else {
-		fmt.Println("不正解です")
+func shuffle(data []string) {
+	n := len(data)
+	rand.Seed(time.Now().Unix())
+	for i := n - 1; i >= 0; i-- {
+		j := rand.Intn(i + 1)
+		data[i], data[j] = data[j], data[i]
 	}
 }
 
+var t int
+
+func init() {
+	flag.IntVar(&t, "t", 1, "制限時間(分)")
+	flag.Parse()
+}
+
+func main() {
+	var (
+		ch_rcv = input(os.Stdin)
+		tm     = time.After(time.Duration(t) * time.Minute)
+		words  = []string{"raccoon", "dog", "cat", "elephant", "tiger", "excellentswimmer is long language"}
+		score  = 0
+	)
+
+	fmt.Println()
+	shuffle(words)
+	fmt.Println("タイピングゲームを始めます。制限時間は", t, "分。1語1点、", len(words), "点満点")
+	num := 1
+	for i := true; i && score < len(words); {
+		question := words[score]
+		fmt.Print("[質問", num, "]次の単語を入力してください:", question, "\n")
+		fmt.Print("[答え]")
+		select {
+		case x := <-ch_rcv:
+			if question == x {
+				fmt.Println("正解です！")
+				score++
+				num++
+			} else {
+				fmt.Println("不正解です！")
+			}
+		case <-tm:
+			fmt.Println("\n制限時間を過ぎました")
+			i = false
+		}
+
+	}
+	fmt.Println("あなたの点数:", score, "点 / ", len(words), " 点")
+	n := score
+	switch {
+	case n <= 10:
+		fmt.Println("判定 F")
+	case n <= 20:
+		fmt.Println("判定 D")
+	case n <= 30:
+		fmt.Println("判定 C")
+	case n <= 35:
+		fmt.Println("判定 B")
+	case n <= 40:
+		fmt.Println("判定 A")
+	case n <= 45:
+		fmt.Println("判定 S")
+	case n > 45:
+		fmt.Println("判定 SSS")
+	default:
+		fmt.Println("判定 F")
+	}
+}
+
+func input(Stdin io.Reader) <-chan string {
+	channel := make(chan string)
+	go func() {
+		strings := bufio.NewScanner(Stdin)
+		for strings.Scan() {
+			channel <- strings.Text()
+		}
+	}()
+	return channel
+}
